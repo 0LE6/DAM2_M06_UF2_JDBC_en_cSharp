@@ -55,43 +55,41 @@ class Program
                 sSQL = "INSERT INTO doctor (doctor_codi, doctor_hospital_codi," +
                     "doctor_nom, doctor_especialitat) VALUES (@param1, @param2, @param3, @param4)";
                 int totalAffectedRows = 0; int affectedRow = 0;
+
                 using (MySqlCommand insertCmd = new MySqlCommand(sSQL, con))
                 {
                     // INSERT con addBatch() y executeBatch()
-                    insertCmd.Parameters.AddWithValue("@param1", 1);
+                    insertCmd.Parameters.AddWithValue("@param1", 5);
                     insertCmd.Parameters.AddWithValue("@param2", 18);
-                    insertCmd.Parameters.AddWithValue("@param3", "Frankenstein");
-                    insertCmd.Parameters.AddWithValue("@param4", "Monstruos");
+                    insertCmd.Parameters.AddWithValue("@param3", "Dr. CSharp");
+                    insertCmd.Parameters.AddWithValue("@param4", "Desde C#");
                     affectedRow = insertCmd.ExecuteNonQuery();
                     totalAffectedRows += affectedRow;
 
-                    insertCmd.Parameters.AddWithValue("@param1", 2);
+                    insertCmd.Parameters.AddWithValue("@param1", 6);
                     insertCmd.Parameters.AddWithValue("@param2", 18);
-                    insertCmd.Parameters.AddWithValue("@param3", "Dolittle");
-                    insertCmd.Parameters.AddWithValue("@param4", "Zoologia");
+                    insertCmd.Parameters.AddWithValue("@param3", "Dr. NET");
+                    insertCmd.Parameters.AddWithValue("@param4", "Desde C#");
                     affectedRow = insertCmd.ExecuteNonQuery();
                     totalAffectedRows += affectedRow;
 
-                    insertCmd.Parameters.AddWithValue("@param1", 3);
+                    insertCmd.Parameters.AddWithValue("@param1", 7);
                     insertCmd.Parameters.AddWithValue("@param2", 18);
-                    insertCmd.Parameters.AddWithValue("@param3", "Patch Adams");
-                    insertCmd.Parameters.AddWithValue("@param4", "Risoterapia");
+                    insertCmd.Parameters.AddWithValue("@param3", "Dr. C#");
+                    insertCmd.Parameters.AddWithValue("@param4", "Desde C#");
                     affectedRow = insertCmd.ExecuteNonQuery();
                     totalAffectedRows += affectedRow;
-
-
-
                 }
                 Console.WriteLine($"Número de INSERTs con Batch -> {totalAffectedRows}");
 
-                // Preparando la instrucción UPDATE con parametrización
+                // Preparando la instrucción UPDATE con parametrización al estilo C#, con @
                 sSQL = "UPDATE doctor SET doctor_hospital_codi = @param1 " +
                     "WHERE doctor_codi = @param2";
                 using (MySqlCommand updateCmd = new MySqlCommand(sSQL, con))
                 {
-                    for (int i = 1; i <= 3; i++)
+                    for (int i = 5; i <= 7; i++)
                     {
-                        // Cambiando el Hospital de nuestros 3 nuevos doctores
+                        // Cambiando el Hospital de nuestros 3 nuevos doctores CSharperos
                         updateCmd.Parameters.AddWithValue("@param1", 22);
                         updateCmd.Parameters.AddWithValue("@param2", i);
                         updateCmd.ExecuteNonQuery();
