@@ -101,11 +101,13 @@ class Program
 
                 // ---- EJERCICIO 3 ----
 
-                // CallableStatement con un solo valor
+                // CallableStatement con un solo valor al estilo C#
+                // en otras palabras, en C#, no se hace distinción entre si es Callable, Prepared etc
+                // MySqlCommand te permite trabajar todas juntas
 
                 // 1st - Preparando la llamada a nuestro PROCEDURE almacenado
-                string storedProcedureCall = "GetDoctor";
-                using (MySqlCommand cmd = new MySqlCommand(storedProcedureCall, con))
+                string storedProcedure = "GetDoctor";
+                using (MySqlCommand cmd = new MySqlCommand(storedProcedure, con))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@doctor_codi", 1);
@@ -124,8 +126,8 @@ class Program
                 // ---- EJERCICIO 4 ----
 
                 // Preparando la llamada al PROCEDURE almacenado con cursor
-                storedProcedureCall = "GetDoctorsByHospital";
-                using (MySqlCommand cmd = new MySqlCommand(storedProcedureCall, con))
+                storedProcedure = "GetDoctorsByHospital";
+                using (MySqlCommand cmd = new MySqlCommand(storedProcedure, con))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@doctor_hospital_codi", 22);
