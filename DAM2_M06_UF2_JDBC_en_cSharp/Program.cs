@@ -34,33 +34,44 @@ internal class Program
         bool everythingIsOk = true;
         string connectionString = $"Server=localhost;Database=hospital;User={user};Password={pass};";
 
+        // Lo primero de todo, se crea una conexion mediante la MySqlConnection
         using (MySqlConnection connection = new MySqlConnection(connectionString))
         {
             // Esto es el quivalente de Java --> Connection con = DriverManager.getConnection...
+            // Abre la conexion
             connection.Open();
+
+            // Creamos una transaction
             MySqlTransaction transaction = connection.BeginTransaction();
 
             try
             {
                 // 1st - Llamamos al procedimiento almacenado para crear un nuevo doctor
+                // En este using entramos la comanda, pasandole en nombre del Procedure, la conexion y la transaccion
                 using (MySqlCommand command = new MySqlCommand("CreateDoctor", connection, transaction))
                 {
                     // Importante, especificamos que a lo que vamos a entrar es a una Procedure
                     command.CommandType = CommandType.StoredProcedure;
 
-                    command.Parameters.Add(new MySqlParameter("@doctorCode", d.DoctorCode));
-                    command.Parameters.Add(new MySqlParameter("@doctorName", d.Name));
-                    command.Parameters.Add(new MySqlParameter("@hospitalCode", d.HospitalCode));
-                    command.Parameters.Add(new MySqlParameter("@docSpec", d.Specialization));
+                    command.Parameters.AddWithValue("@doctorCode", d.DoctorCode);
+                    command.Parameters.AddWithValue("@doctorName", d.Name);
+                    command.Parameters.AddWithValue("@hospitalCode", d.HospitalCode);
+                    command.Parameters.AddWithValue("@docSpec", d.Specialization);
+
+                    // Ejecutamos el comando
                     command.ExecuteNonQuery();
                 }
 
                 // 2nd - Llamamos al procedimiento almacenado para actualizar el doctor
                 using (MySqlCommand command = new MySqlCommand("UpdateDoctorHospital", connection, transaction))
                 {
+                    // Importante, especificamos que a lo que vamos a entrar es a una Procedure
                     command.CommandType = CommandType.StoredProcedure;
-                    command.Parameters.Add(new MySqlParameter("@DoctorCode", d.DoctorCode));
-                    command.Parameters.Add(new MySqlParameter("@newHospitalCode", updateHospitalCode));
+
+                    command.Parameters.AddWithValue("@DoctorCode", d.DoctorCode);
+                    command.Parameters.AddWithValue("@newHospitalCode", updateHospitalCode);
+
+                    // Ejecutamos el comando
                     command.ExecuteNonQuery();
                 }
 
