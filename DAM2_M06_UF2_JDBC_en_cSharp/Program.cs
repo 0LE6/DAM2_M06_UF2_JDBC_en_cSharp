@@ -41,13 +41,13 @@ internal class Program
             // Abre la conexion
             connection.Open();
 
-            // Creamos una transaction
+            // Creamos una transaction, e IMPORTANTE, esto pone el setAutoCommit en FALSE automaticamente
             MySqlTransaction transaction = connection.BeginTransaction();
 
             try
             {
                 // 1st - Llamamos al procedimiento almacenado para crear un nuevo doctor
-                // En este using entramos la comanda, pasandole en nombre del Procedure, la conexion y la transaccion
+                // En este using entramos la comanda, pasándole en nombre del Procedure, la conexion y la transaccion
                 using (MySqlCommand command = new MySqlCommand("CreateDoctor", connection, transaction))
                 {
                     // Importante, especificamos que a lo que vamos a entrar es a una Procedure
@@ -63,6 +63,7 @@ internal class Program
                 }
 
                 // 2nd - Llamamos al procedimiento almacenado para actualizar el doctor
+                // En este using entramos la comanda, pasándole nuevamente en nombre del Procedure, la conexion y la transaccion
                 using (MySqlCommand command = new MySqlCommand("UpdateDoctorHospital", connection, transaction))
                 {
                     // Importante, especificamos que a lo que vamos a entrar es a una Procedure
