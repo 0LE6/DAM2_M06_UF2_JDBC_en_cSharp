@@ -107,20 +107,24 @@ class Program
 
                 // 1st - Preparando la llamada a nuestro PROCEDURE almacenado
                 string storedProcedure = "GetDoctor";
+                int codigoDoctor = 6;
                 using (MySqlCommand cmd = new MySqlCommand(storedProcedure, con))
                 {
+                    // Definimos que tipo de comando vamos a ejecutar
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@doctor_codi", 1);
 
-                    MySqlParameter outParam = new MySqlParameter("@doctor_nom", SqlDbType.VarChar);
-                    outParam.Direction = ParameterDirection.Output;
-                    cmd.Parameters.Add(outParam);
+                    cmd.Parameters.AddWithValue("@doctor_codi", codigoDoctor);
+
+                    // Manejamos el parámetro de salida
+                    MySqlParameter outParam = new MySqlParameter("@doctor_nom", SqlDbType.VarChar); // le decimos que es VARCHAR
+                    outParam.Direction = ParameterDirection.Output; // y su dirección es de salida
+                    cmd.Parameters.Add(outParam); // y lo añadimos la comando
 
                     // Ejecutar el procedimiento almacenado
                     cmd.ExecuteNonQuery();
 
                     // Imprimir el resultado del parámetro de salida
-                    Console.WriteLine("Nombre del doctor con ID 1: " + outParam.Value);
+                    Console.WriteLine($"Nombre del doctor con ID {codigoDoctor}: " + outParam.Value);
                 }
 
                 // ---- EJERCICIO 4 ----
