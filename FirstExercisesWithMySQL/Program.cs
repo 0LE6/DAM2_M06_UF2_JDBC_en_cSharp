@@ -85,6 +85,7 @@ class Program
                 // Preparando la instrucción UPDATE con parametrización al estilo C#, con @
                 sSQL = "UPDATE doctor SET doctor_hospital_codi = @param1 " +
                     "WHERE doctor_codi = @param2";
+                totalAffectedRows = 0; affectedRow = 0;
                 using (MySqlCommand updateCmd = new MySqlCommand(sSQL, con))
                 {
                     for (int i = 5; i <= 7; i++)
@@ -92,9 +93,10 @@ class Program
                         // Cambiando el Hospital de nuestros 3 nuevos doctores CSharperos
                         updateCmd.Parameters.AddWithValue("@param1", 22);
                         updateCmd.Parameters.AddWithValue("@param2", i);
-                        updateCmd.ExecuteNonQuery();
+                        affectedRow = updateCmd.ExecuteNonQuery();
+                        totalAffectedRows += affectedRow;
                     }
-                    Console.WriteLine("Número de actualizaciones con Batch -> 3");
+                    Console.WriteLine($"Número de actualizaciones con Batch -> {totalAffectedRows}");
                 }
 
                 // ---- EJERCICIO 3 ----
