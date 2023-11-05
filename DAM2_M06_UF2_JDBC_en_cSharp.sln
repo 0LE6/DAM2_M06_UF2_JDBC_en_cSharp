@@ -5,6 +5,8 @@ VisualStudioVersion = 17.7.34202.233
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAM2_M06_UF2_JDBC_en_cSharp", "DAM2_M06_UF2_JDBC_en_cSharp\DAM2_M06_UF2_JDBC_en_cSharp.csproj", "{FCEB7474-6D8C-4439-B014-36C0F7EA1A72}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FirstExercisesWithMySQL", "FirstExercisesWithMySQL\FirstExercisesWithMySQL.csproj", "{53E23C29-AF87-469A-91AA-748574BA4D17}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{FCEB7474-6D8C-4439-B014-36C0F7EA1A72}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FCEB7474-6D8C-4439-B014-36C0F7EA1A72}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FCEB7474-6D8C-4439-B014-36C0F7EA1A72}.Release|Any CPU.Build.0 = Release|Any CPU
+		{53E23C29-AF87-469A-91AA-748574BA4D17}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53E23C29-AF87-469A-91AA-748574BA4D17}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53E23C29-AF87-469A-91AA-748574BA4D17}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53E23C29-AF87-469A-91AA-748574BA4D17}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
