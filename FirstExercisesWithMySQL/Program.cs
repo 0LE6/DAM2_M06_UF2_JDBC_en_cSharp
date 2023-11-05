@@ -124,7 +124,7 @@ class Program
                     cmd.ExecuteNonQuery();
 
                     // Imprimir el resultado del parámetro de salida
-                    Console.WriteLine($"Nombre del doctor con ID {codigoDoctor}: " + outParam.Value);
+                    Console.WriteLine($"Nombre del doctor con ID {codigoDoctor}: " + outParam.Value); // lo printeamos
                 }
 
                 // ---- EJERCICIO 4 ----
