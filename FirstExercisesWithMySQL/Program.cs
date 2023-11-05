@@ -54,6 +54,7 @@ class Program
                 // Preparando la instrucción INSERT con parametrización
                 sSQL = "INSERT INTO doctor (doctor_codi, doctor_hospital_codi," +
                     "doctor_nom, doctor_especialitat) VALUES (@param1, @param2, @param3, @param4)";
+                int totalAffectedRows = 0; int affectedRow = 0;
                 using (MySqlCommand insertCmd = new MySqlCommand(sSQL, con))
                 {
                     // INSERT con addBatch() y executeBatch()
@@ -61,23 +62,27 @@ class Program
                     insertCmd.Parameters.AddWithValue("@param2", 18);
                     insertCmd.Parameters.AddWithValue("@param3", "Frankenstein");
                     insertCmd.Parameters.AddWithValue("@param4", "Monstruos");
-                    insertCmd.ExecuteNonQuery();
+                    affectedRow = insertCmd.ExecuteNonQuery();
+                    totalAffectedRows += affectedRow;
 
                     insertCmd.Parameters.AddWithValue("@param1", 2);
                     insertCmd.Parameters.AddWithValue("@param2", 18);
                     insertCmd.Parameters.AddWithValue("@param3", "Dolittle");
                     insertCmd.Parameters.AddWithValue("@param4", "Zoologia");
-                    insertCmd.ExecuteNonQuery();
+                    affectedRow = insertCmd.ExecuteNonQuery();
+                    totalAffectedRows += affectedRow;
 
                     insertCmd.Parameters.AddWithValue("@param1", 3);
                     insertCmd.Parameters.AddWithValue("@param2", 18);
                     insertCmd.Parameters.AddWithValue("@param3", "Patch Adams");
                     insertCmd.Parameters.AddWithValue("@param4", "Risoterapia");
-                    insertCmd.ExecuteNonQuery();
+                    affectedRow = insertCmd.ExecuteNonQuery();
+                    totalAffectedRows += affectedRow;
 
-                    Console.WriteLine("Número de INSERTs con Batch -> 3");
+
 
                 }
+                Console.WriteLine($"Número de INSERTs con Batch -> {totalAffectedRows}");
 
                 // Preparando la instrucción UPDATE con parametrización
                 sSQL = "UPDATE doctor SET doctor_hospital_codi = @param1 " +
