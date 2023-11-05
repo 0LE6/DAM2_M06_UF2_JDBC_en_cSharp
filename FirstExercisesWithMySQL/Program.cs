@@ -129,17 +129,27 @@ class Program
 
                 // ---- EJERCICIO 4 ----
 
-                // Preparando la llamada al PROCEDURE almacenado con cursor
+                // Preparando la llamada al PROCEDURE almacenado con CURSOR al estilo C#
+
+                // Nuevamente preparamos el nombre de nuestra PROCEDURE
                 storedProcedure = "GetDoctorsByHospital";
+                int hospitalCode = 22;
+
+                // Iniciamos nuestra comanda
                 using (MySqlCommand cmd = new MySqlCommand(storedProcedure, con))
                 {
+                    // Como siempre, indicamos que es de tipo PROCEDURE
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@doctor_hospital_codi", 22);
 
-                    // Ejecutar el procedimiento almacenado con variable booleana
+                    // Pasamos parámetro
+                    cmd.Parameters.AddWithValue("@doctor_hospital_codi", hospitalCode);
+
+                    // Ejecutar el procedimiento almacenado con if dentro, por si no hay resultados
                     using (MySqlDataReader reader = cmd.ExecuteReader())
                     {
-                        ShowResultForCallableStatementWithCursor(reader);
+                        // Usamos el bool HasRows
+                        if (reader.HasRows) ShowResultForCallableStatementWithCursor(reader);
+                        else Console.WriteLine($"No results found with hospital code {hospitalCode}.");
                     }
                 }
             }
