@@ -2,6 +2,9 @@
 using MySql.Data.MySqlClient;
 
 class Program
+
+    // Terminados los ejercicios de JDBC en C#, usando MySQL
+    // AVISO: descargar paquetes MySQL desde NuGet para que funcione.
 {
     static void Main(string[] args)
     {
