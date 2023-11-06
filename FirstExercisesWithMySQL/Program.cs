@@ -129,10 +129,10 @@ class Program
                     // Definimos que tipo de comando vamos a ejecutar
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    cmd.Parameters.AddWithValue("@doctor_codi", codigoDoctor);
+                    cmd.Parameters.AddWithValue("@doctorCode", codigoDoctor);
 
                     // Manejamos el parámetro de salida
-                    MySqlParameter outParam = new MySqlParameter("@doctor_nom", SqlDbType.VarChar); // le decimos que es VARCHAR
+                    MySqlParameter outParam = new MySqlParameter("@doctorName", SqlDbType.VarChar); // le decimos que es VARCHAR
                     outParam.Direction = ParameterDirection.Output; // y su dirección es de salida
                     cmd.Parameters.Add(outParam); // y lo añadimos la comando
 
@@ -160,7 +160,7 @@ class Program
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     // Pasamos parámetro
-                    cmd.Parameters.AddWithValue("@doctor_hospital_codi", hospitalCode);
+                    cmd.Parameters.AddWithValue("@hospitalCode", hospitalCode);
 
                     // Ejecutar el procedimiento almacenado con if dentro, por si no hay resultados
                     using (MySqlDataReader reader = cmd.ExecuteReader())
@@ -170,6 +170,8 @@ class Program
                         else Console.WriteLine($"No results found with hospital code {hospitalCode}.");
                     }
                 }
+
+                Console.WriteLine("\nEX 04 DONE\n");
             }
         }
         catch (Exception e)
