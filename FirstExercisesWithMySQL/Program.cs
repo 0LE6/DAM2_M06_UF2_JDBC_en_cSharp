@@ -91,7 +91,7 @@ class Program
 
                     insertCmd.Parameters.Clear();
                 }
-                Console.WriteLine($"Número de INSERTs con Batch -> {totalAffectedRows}");
+                Console.WriteLine($"Número de INSERTs  -> {totalAffectedRows}");
 
                 // Preparando la instrucción UPDATE con parametrización al estilo C#, con @
                 sSQL = "UPDATE doctor SET doctor_hospital_codi = @param1 " +
@@ -111,7 +111,7 @@ class Program
 
                     }
                 }
-                Console.WriteLine($"Número de actualizaciones con Batch -> {totalAffectedRows}");
+                Console.WriteLine($"Número de actualizaciones  -> {totalAffectedRows}");
 
                 Console.WriteLine("\nEX 02 DONE\n");
 
