@@ -132,7 +132,7 @@ class Program
                     cmd.Parameters.AddWithValue("@doctorCode", codigoDoctor);
 
                     // Manejamos el parámetro de salida
-                    MySqlParameter outParam = new MySqlParameter("@doctorName", SqlDbType.VarChar); // le decimos que es VARCHAR
+                    MySqlParameter outParam = new MySqlParameter("@doctorName", MySqlDbType.VarChar); // le decimos que es VARCHAR, importantísimo, que ea MySQLDBType
                     outParam.Direction = ParameterDirection.Output; // y su dirección es de salida
                     cmd.Parameters.Add(outParam); // y lo añadimos la comando
 
