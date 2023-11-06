@@ -16,7 +16,7 @@ class Program
 
                 // 1st -> Preparando la consulta con ? como parámetros
                 using (MySqlCommand cmd = new MySqlCommand(
-                    "UPDATE alumnos SET nota = 'NP' " +
+                    "UPDATE alumnos SET nota = 'C#' " +
                     "WHERE exp > @param1 AND exp < @param2", con))
                 {
                     // 2nd -> Parametrización
@@ -29,16 +29,19 @@ class Program
                     else Console.WriteLine("MALA ACTUALIZACIÓN");
                 }
 
+                Console.WriteLine("\n");
+
                 // ---- EJERCICIO 1 ----
 
                 // 1st -> Preparando la consulta SELECT con ?
                 string sSQL = "SELECT * FROM alumnos WHERE exp = @exp";
 
                 // 2nd -> Creando el SqlCommand
-                using (MySqlCommand cmd = new MySqlCommand(sSQL, con))
+
+                // Vamos a seleccionar alumnos con exp de 1 a 3
+                for (int i = 1; i <= 3; i++)
                 {
-                    // Vamos a seleccionar alumnos con exp de 1 a 3
-                    for (int i = 1; i <= 3; i++)
+                    using (MySqlCommand cmd = new MySqlCommand(sSQL, con))
                     {
                         cmd.Parameters.AddWithValue("@exp", i);
                         using (MySqlDataReader reader = cmd.ExecuteReader())
@@ -48,6 +51,8 @@ class Program
                         }
                     }
                 }
+
+                Console.WriteLine("\n");
 
                 // ---- EJERCICIO 2 ----
 
@@ -99,6 +104,8 @@ class Program
                     Console.WriteLine($"Número de actualizaciones con Batch -> {totalAffectedRows}");
                 }
 
+                Console.WriteLine("\n");
+
                 // ---- EJERCICIO 3 ----
 
                 // CallableStatement con un solo valor al estilo C#
@@ -126,6 +133,8 @@ class Program
                     // Imprimir el resultado del parámetro de salida
                     Console.WriteLine($"Nombre del doctor con ID {codigoDoctor}: " + outParam.Value); // lo printeamos
                 }
+
+                Console.WriteLine("\n");
 
                 // ---- EJERCICIO 4 ----
 
