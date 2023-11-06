@@ -52,7 +52,7 @@ class Program
                     }
                 }
 
-                Console.WriteLine("\n");
+                Console.WriteLine("\nEX 01 DONE\n");
 
                 // ---- EJERCICIO 2 ----
 
@@ -113,7 +113,7 @@ class Program
                 }
                 Console.WriteLine($"Número de actualizaciones con Batch -> {totalAffectedRows}");
 
-                Console.WriteLine("\n");
+                Console.WriteLine("\nEX 02 DONE\n");
 
                 // ---- EJERCICIO 3 ----
 
@@ -143,7 +143,7 @@ class Program
                     Console.WriteLine($"Nombre del doctor con ID {codigoDoctor}: " + outParam.Value); // lo printeamos
                 }
 
-                Console.WriteLine("\n");
+                Console.WriteLine("\nEX 03 DONE\n");
 
                 // ---- EJERCICIO 4 ----
 
