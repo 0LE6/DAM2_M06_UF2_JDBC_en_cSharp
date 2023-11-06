@@ -71,6 +71,8 @@ class Program
                     affectedRow = insertCmd.ExecuteNonQuery();
                     totalAffectedRows += affectedRow;
 
+                    insertCmd.Parameters.Clear(); // Limpiar los parámetros para reutilizar el comando, si no, peta
+
                     insertCmd.Parameters.AddWithValue("@param1", 6);
                     insertCmd.Parameters.AddWithValue("@param2", 18);
                     insertCmd.Parameters.AddWithValue("@param3", "Dr. NET");
@@ -78,12 +80,16 @@ class Program
                     affectedRow = insertCmd.ExecuteNonQuery();
                     totalAffectedRows += affectedRow;
 
+                    insertCmd.Parameters.Clear();
+
                     insertCmd.Parameters.AddWithValue("@param1", 7);
                     insertCmd.Parameters.AddWithValue("@param2", 18);
                     insertCmd.Parameters.AddWithValue("@param3", "Dr. C#");
                     insertCmd.Parameters.AddWithValue("@param4", "Desde C#");
                     affectedRow = insertCmd.ExecuteNonQuery();
                     totalAffectedRows += affectedRow;
+
+                    insertCmd.Parameters.Clear();
                 }
                 Console.WriteLine($"Número de INSERTs con Batch -> {totalAffectedRows}");
 
@@ -91,18 +97,21 @@ class Program
                 sSQL = "UPDATE doctor SET doctor_hospital_codi = @param1 " +
                     "WHERE doctor_codi = @param2";
                 totalAffectedRows = 0; affectedRow = 0;
-                using (MySqlCommand updateCmd = new MySqlCommand(sSQL, con))
+
+                for (int i = 5; i <= 7; i++)
                 {
-                    for (int i = 5; i <= 7; i++)
+                    using (MySqlCommand updateCmd = new MySqlCommand(sSQL, con))
                     {
+
                         // Cambiando el Hospital de nuestros 3 nuevos doctores CSharperos
                         updateCmd.Parameters.AddWithValue("@param1", 22);
                         updateCmd.Parameters.AddWithValue("@param2", i);
                         affectedRow = updateCmd.ExecuteNonQuery();
                         totalAffectedRows += affectedRow;
+
                     }
-                    Console.WriteLine($"Número de actualizaciones con Batch -> {totalAffectedRows}");
                 }
+                Console.WriteLine($"Número de actualizaciones con Batch -> {totalAffectedRows}");
 
                 Console.WriteLine("\n");
 
